@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:LicznikKalorii"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="LicznikKalorii.MainPage">
+    <ContentPage Title="Graficzny obraz dostarczonych kalorii">
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Text="Witaj w aplikacji zliczającej kalorie oraz reprezentujące je w sposób graficzny" Grid.Row="0" FontSize="Large" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="5" TextColor="Black" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Wprowadź dane">
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Limit kalorii" Grid.Row="0" Grid.Column="0"/>
+                <Label Text="Śniadanie" Grid.Row="1" Grid.Column="0"/>
+                <Label Text="II śniadanie" Grid.Row="2" Grid.Column="0"/>
+                <Label Text="Obiad" Grid.Row="3" Grid.Column="0"/>
+                <Label Text="Podwieczorek" Grid.Row="4" Grid.Column="0"/>
+                <Label Text="Kolacja" Grid.Row="5" Grid.Column="0"/>
+                <Entry x:Name="eLimitKal" Grid.Row="0" Grid.Column="1" Placeholder="[kcal]" PlaceholderColor="LightGray" Keyboard="Numeric"/>
+                <Entry x:Name="eSniadanie" Grid.Row="1" Grid.Column="1" Placeholder="[kcal]" PlaceholderColor="LightGray" Keyboard="Numeric"/>
+                <Entry x:Name="eIISniadanie" Grid.Row="2" Grid.Column="1" Placeholder="[kcal]" PlaceholderColor="LightGray" Keyboard="Numeric"/>
+                <Entry x:Name="eObiad" Grid.Row="3" Grid.Column="1" Placeholder="[kcal]" PlaceholderColor="LightGray" Keyboard="Numeric"/>
+                <Entry x:Name="ePodwieczorek" Grid.Row="4" Grid.Column="1" Placeholder="[kcal]" PlaceholderColor="LightGray" Keyboard="Numeric"/>
+                <Entry x:Name="eKolacja" Grid.Row="5" Grid.Column="1" Placeholder="[kcal]" PlaceholderColor="LightGray" Keyboard="Numeric"/>
+                <Button x:Name="butZapisz" Grid.Row="6" Grid.ColumnSpan="2" Text="Zapisz dane" Clicked="ButZapisz_Clicked"/>
+                <Button x:Name="butWyczysc" Grid.Row="7" Grid.ColumnSpan="2" Text="Wyczyść pola" Clicked="ButWyczysc_Clicked" />
+            </Grid>
+
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Wykres">
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Twoje zapotrzebowanie kcal"  Grid.Column="0"  Grid.Row="0" />
+                <Label x:Name="LabelZapotrzebowanie" Grid.Column="1"  Grid.Row="0" />
+                <Label Text="Śniadanie"  Grid.Column="0" Grid.Row="1" />
+                <Label x:Name="LabelSniadanie" Grid.Column="1" Grid.Row="1" />
+                <Label Text="II Śniadanie" Grid.Column="2" Grid.Row="1" />
+                <Label x:Name="LabelIISniadanie" Grid.Column="3" Grid.Row="1" />
+                <Label Text="Obiad" Grid.Column="0" Grid.Row="2" />
+                <Label x:Name="LabelObiad" Grid.Column="1" Grid.Row="2" />
+                <Label Text="Podwieczorek" Grid.Column="2" Grid.Row="2" />
+                <Label x:Name="LabelPodwieczorek" Grid.Column="3" Grid.Row="2" />
+                <Label Text="Kolacja" Grid.Column="0"  Grid.Row="3" />
+                <Label x:Name="LabelKolacja" Grid.Column="1"  Grid.Row="3"/>
+                <Button x:Name="WczytajDane" Text="Podgląd danych" Clicked="WczytajDane_Clicked"  Grid.Row="4" Grid.ColumnSpan="4" />
+                <Label Text="Suma [kcal]" Grid.Column="2" Grid.Row="3" />
+                <Label x:Name="LabelSuma" Grid.Column="3" Grid.Row="3" />
+                <Picker x:Name="dietaPicker" Title="Wybór diety" TextColor="Red" Grid.Row="5" Grid.ColumnSpan="4"  SelectedIndexChanged="DietaPicker_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Normalna</x:String>
+                        <x:String>Active</x:String>
+                        <x:String>Vege</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Label Text="Rozkład kalorii"  Grid.ColumnSpan="4" Grid.Row="6" Margin="2" />
+                <forms:ChartView x:Name="Chart1" HeightRequest="150" Grid.ColumnSpan="4" Grid.Row="7"/>
+                <Label Text="Rozkład makroskładników [kcal]" Grid.Column="0" Grid.Row="8" />
+                <forms:ChartView x:Name="ChartCase0" HeightRequest="150"  Grid.ColumnSpan="4" Grid.Row="9" />
+                <Label Text="Pokaż brakujące kalorie" Grid.Column="0" Grid.Row="10" />
+                <Switch Grid.Column="1" Grid.Row="10"  IsToggled="False" Toggled="Switch_Toggled"/>
+                <forms:ChartView x:Name="ChartToggled" HeightRequest="160"  Grid.ColumnSpan="4" Grid.Row="11" />
+            </Grid>
+            
+
+
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>
